@@ -1,9 +1,13 @@
+# PAMGuardTonals2Silbido
+
 This utility is **NOT** secure and could execute arbitrary code if not handled safely.
 
 A basic utility that transfers binary tonal-annotation files from the PAMGuard .pgdf format to the *silbido* binary tonal-annotation format.
 
-The utility has been tested with Python 3.11.6 and R 4.3.1. For the utility to work, R must have the PamBinaries[https://github.com/cran/PamBinaries] (tested 1.8.1), jsonlite, and magrittr (tested 2.0.3) libraries installed. 
+## Dependencies
+The utility has been tested with Python 3.11.6 and R 4.3.1. For the utility to work, R must have the [PamBinaries](https://github.com/cran/PamBinaries) (tested 1.8.1), jsonlite, and magrittr (tested 2.0.3) libraries installed. 
 
+## Use
 To call the utility, use
 
 python3 PamguardToSilbidoBinaries.py source/binaries/directory destination/directory path/to/Rscript
@@ -19,6 +23,7 @@ There are two PAMGuard binary files included for testing. To verify that the uti
 .\PamguardToSilbidoBinaries.py ./test-pamguard-binaries ./ */path/to/Rscript*
 
 
+## Contains
 The following files are included.
 - PamguardBinariesToJson.R: An R script to read multiple PAMGuard binary tonal-annotation files and to generate a corresponding JSON file.
 - PamguardToBinaryFiles.py: The main program.
