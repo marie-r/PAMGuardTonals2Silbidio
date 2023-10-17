@@ -25,7 +25,7 @@ print(f"Translating PAMGuard Binaries to intermediate file {args.intermediary}")
 command_str = f"{args.rscript} PamguardBinariesToJson.R {args.source} {args.intermediary}"
 
 if input(f"WARNING: command \"{command_str}\" will execute as a result of this script.\n Are you certain that you wish to procede? (y/n)") == 'y':
-    continue
+    pass
 else:
     print("Execution halted by user.")
     exit()
