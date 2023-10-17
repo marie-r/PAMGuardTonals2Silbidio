@@ -22,7 +22,15 @@ print(f"Translating PAMGuard Binaries to intermediate file {args.intermediary}")
 
 # Use R script to get all PAMGuard binaries into intermediate JSON file
 # WARNING: ARBITRARY CODE COULD BE RUN
-e = subprocess.call(f"{args.rscript} PamguardBinariesToJson.R {args.source} {args.intermediary}")
+command_str = f"{args.rscript} PamguardBinariesToJson.R {args.source} {args.intermediary}"
+
+if input(f"WARNING: command \"{command_str}\" will execute as a result of this script.\n Are you certain that you wish to procede? (y/n)") == 'y':
+    continue
+else:
+    print("Execution halted by user.")
+    exit()
+
+e = subprocess.call(command_str)
 
 print(f"Reading Data from intermediary.")
 # Read data from intermediary to Python
