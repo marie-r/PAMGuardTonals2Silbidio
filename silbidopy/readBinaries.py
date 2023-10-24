@@ -54,7 +54,10 @@ class TonalHeader:
         self.version = None
 
 
-        magicStr = str(file.read(self.magicLen), 'utf-8')
+        try:
+            magicStr = str(file.read(self.magicLen), 'utf-8')
+        except:
+            magicStr = ''
         if magicStr == self.HEADER_STR:
             # found magic string, looks like a valid header
             self.version = int.from_bytes(file.read(SHORT_LEN), byteorder = "big")
@@ -96,6 +99,7 @@ class TonalHeader:
             # Perhaps it can be read in the old headerless format
             self.bitMask = self.DEFAULT
             self.userVersion = -1
+            self.version = -1
 
 
     
