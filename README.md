@@ -25,6 +25,7 @@ There are two PAMGuard binary files included for testing. To verify that the uti
 
 ## Contains
 The following files are included.
+- filterMoans.py: Code to filter silbido annotations, that poor annotations be removed.
 - PamguardBinariesToJson.R: An R script to read multiple PAMGuard binary tonal-annotation files and to generate a corresponding JSON file.
 - PamguardToBinaryFiles.py: The main program.
 - README.md: The readme.
