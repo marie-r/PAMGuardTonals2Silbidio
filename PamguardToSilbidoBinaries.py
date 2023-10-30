@@ -13,6 +13,7 @@ parser = argparse.ArgumentParser("PamguardToSilbidoBinaries",
 parser.add_argument("source", help = "The directory containing the PAMGuard binaries to be converted. i.e. /path/to/pamguard/binaries", type = str)
 parser.add_argument("destination", help = "The directory to which the silbido binaries will be written. i.e. path/to/output/folder", type = str)
 parser.add_argument("rscript", help = "The path to the Rscript.exe file, the installation of R. i.e. /path/to/Rscript.exe", type = str)
+parser.add_argument("-m", action="store_true", help = "If set, filters the PAMGuard annotations, removing all that do not meet criteria to be a blue-whale moan. (requires NumPy)", default = False)
 parser.add_argument("-i", action="store_true", help = "If set, this flag specifies that the intermediate JSON file will be saved, by default, to './intermediary.json'.", default = False)
 parser.add_argument("--intermediary", help = "The file to which the intermediate JSON file will be written to translate data from R to Python. i.e. /path/to/intermediary.json (This file will be DELETED if -i not set; default is './intermediary.json')", type = str, default = "./intermediary.json")
 args = parser.parse_args()
@@ -45,8 +46,12 @@ print(f"Writing silbido binaries to {args.destination}")
 for file in files:
 
     contours = file["data"]
+    if args.m:
+        import filterMoans
+        contours = filterMoans.processDCalls(contours, merge = True,
+                                             trim = True, final_rejection = True)
 
-    # This naming scheme names each file after its Pamguard counterpart,
+    # This naming scheme names each file after its PAMGuard counterpart,
     # only with a different extention instead of pgdf    
     output_full_path = (
         args.destination + "/"
